@@ -1,0 +1,142 @@
+  <div class="container">
+    <div class="card">
+      <div class="custom-card-header">
+        <%if @travel_event.image_url != nil %>
+          <div class="row">
+            <div>
+              <%= image_tag @travel_event.image_url.to_s, size: '500x100', class: "travel-event-list-image card-img-top"%>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="row pl8">
+              <time datetime="2014-09-20" class="icon">
+                <em><%= @travel_event.start.strftime("%a %I:%M:%S %P") %></em>
+
+                <strong>
+                  <%= @travel_event.start.strftime("%b, %Y") %>
+                </strong>
+                <span><%= @travel_event.start.strftime("%d") %></span>
+              </time>
+            </div>
+            <div class="row pl16 pt8">
+              <span class="label label-warning">
+                <i class="glyphicon glyphicon-time"></i>
+                Duration: <%= @travel_event.duration.strftime("%H hr %M min %S sec") %>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <h1 class="card-title text-center"><%= @travel_event.name %></h1>
+            <p class="text-muted text-center">
+              <i class="glyphicon glyphicon-user"></i>
+              Hosted by <%= link_to @travel_event.user.first_name + " " + @travel_event.user.last_name, user_path(@travel_event.user.id) %>
+            </p>
+            <p class="text-center">
+              <span class="label label-info">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                <%= @travel_event.travel_destination.address %>
+              </span> |
+              <span class="label label-info">
+                <span class="glyphicon glyphicon-user"></span>
+                Max Attendance: <%= @travel_event.max_attendance %>
+              </span> |
+              <span class="label label-info">
+                <span class="glyphicon glyphicon-usd"></span>
+                Cost: <%= @travel_event.price %>
+              </span>
+
+            </p>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+      <div class="card-block">
+        <% if @travel_event.attendees.count > 0 %>
+            <div class="row">
+              <div class="col-lg-12 text-center">
+                <h5>
+                  <span>
+                    <i class="glyphicon glyphicon-user"></i>
+                    <strong><%= @travel_event.attendees.count%> joined.</strong>
+                  </span>
+                </h5>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12 text-center">
+                <% @travel_event.attendees.each_with_index do |attendee, ind|%>
+                    <% @user = User.find(attendee.user_id) %>
+                    <%= link_to @user.first_name + " " + @user.last_name, user_path(@user.id) %>
+
+                    <% if ind < @travel_event.attendees.count - 1 %>
+                        |
+                    <% end %>
+                <% end %>
+                <div>
+                  <div class="progress">
+                    <% @people_attended_percentage = @travel_event.attendees.count * 100/ @travel_event.max_attendance %>
+                    <% @progress_bar_type =  @people_attended_percentage < 80 ? "progress-bar-success": "progress-bar-danger" %>
+                    <div class="progress-bar <%= @progress_bar_type%> progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= @people_attended_percentage%>%">
+                      <%= @people_attended_percentage%>%
+                    </div>
+                  </div>
+                </div>
+                <div class="custom-table-row">
+                </div>
+
+              </div>
+            </div>
+        <% end %>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h4>Timeline</h4>
+            <div class="text-center">
+              <%= render(
+                    partial: 'travel_events/timeline',
+                    locals: {travel_places: @travel_event.travel_places}
+                ) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="custom-table-row">
+          <div class="col-lg-12">
+            <h4>Details</h4>
+            <p class="card-text"><%= @travel_event.description %></p>
+          </div>
+        </div>
+      </div>
+
+  <div>
+        <div>
+          <%= render(
+                  partial: 'travel_events/navigation',
+                  locals: {reviews: @reviews, has_review: @has_review, average_rating: @average_rating, posts: @posts, posts_paginated: @posts_paginated, reviews_paginated: @reviews_paginated}
+              ) %>
+        </div>
+
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+      <div class="card-footer">
+        <% if @travel_event.user_id == current_admin.user.id %>
+            <%= link_to 'Edit', edit_travel_event_path(@travel_event), class: "btn btn-sm btn-primary" %>
+        <% end %>
+        <%= link_to 'Back', travel_events_path, class: "btn btn-sm btn-danger" %>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script>
+
+  </script>

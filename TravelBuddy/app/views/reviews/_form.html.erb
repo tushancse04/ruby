@@ -1,0 +1,62 @@
+<%= form_for(review) do |f| %>
+<% if review.errors.any? %>
+<div id="error_explanation" class="center-block">
+  <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+  <ul>
+    <% review.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= f.hidden_field :travel_event_id %>
+<%= f.hidden_field :user_id %>
+<div class="col-md-12">
+  <div class="row custom-table-row">
+    <div class="col-md-4">
+      <%= f.label :rating%>:
+    </div>
+    <!-- <div class="col-md-8">
+      <%= f.number_field :rating, step: :any, class: "col-md-3"%>
+    </div> -->
+    <div class="col-md-8">
+      <div id='star-rating'></div>
+    </div>
+  </div>
+
+  <!-- <div class="form-group row">
+    <%= f.label :rating, class: 'col-sm-2 form-control-label' %>
+    <div class="col-sm-6" id='star-rating' score-name="review[rating]"></div>
+  </div> -->
+
+  <div class="row custom-table-row">
+    <div class="col-md-4">
+      <%= f.label :description %>:
+    </div>
+    <div class="col-md-8">
+      <%= f.text_area :description, class: "col-md-12"%>
+    </div>
+  </div>
+
+  <div class="row custom-table-row">
+    <div class="actions col-md-12">
+      <div class="text-center">
+        <%= f.submit 'Save', class: "btn btn-sm btn-primary"%>
+        <%= link_to 'Cancel', travel_event_path(review.travel_event_id), class: "btn btn-sm btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+<script>
+  $('#star-rating').raty({
+    score: '<%= review.rating%>',
+    half: true,
+    path: '/assets',
+    scoreName: 'review[rating]'
+  });
+</script>

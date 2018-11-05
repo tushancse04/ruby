@@ -1,0 +1,128 @@
+Styling
+- use bootstrap (https://launchschool.com/blog/integrating-rails-and-bootstrap-part-1)
+
+User Profile Template
+- http://bootsnipp.com/snippets/featured/simple-user-profile
+
+command for application
+
+rails g migration AddAdminRefToUsers admin:references
+
+image upload 
+- https://medium.com/@mauddev/rails-5-and-carrierwave-53960ec20c4b
+
+image upload instruction 
+- gem 'carrierwave'
+- rails g uploader image
+- rails g migration AddImageToUsers image:string
+
+payment with paypal
+- https://launchschool.com/blog/basic-paypal-checkout-processing-in-rails
+
+awsome rail gem list 
+- https://github.com/hothero/awesome-rails-gem#file-uploading
+- https://github.com/ekremkaraca/awesome-rails#generators
+- https://github.com/sdogruyol/awesome-ruby#data-visualization
+
+
+facebook event api reference 
+- https://developers.facebook.com/docs/graph-api/reference/event
+
+Add swiper slider in event page 
+- http://idangero.us/swiper/demos/#.WONDmTvytPY
+autoplay 
+
+
+facebook integration
+https://launchschool.com/blog/facebook-graph-api-using-omniauth-facebook-and-koala
+
+free hosting with heroku
+- https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction
+github integration with heroku
+- https://devcenter.heroku.com/articles/github-integration#manual-deploys
+
+
+Star rating 
+- https://www.rubyplus.com/articles/4011-Using-Star-Rating-jQuery-Plugin-Raty-with-Twitter-Bootstrap-4-in-Rails-5-Apps
+- https://github.com/wbotelhos/raty
+- http://jacob87.github.io/raty-fa/
+
+
+# how to add field to admins
+- http://stackoverflow.com/questions/6722094/devise-adding-first-name-to-users
+- http://jacopretorius.net/2014/03/adding-custom-fields-to-your-devise-user-model-in-rails-4.html
+
+rails generate migration AddFieldToAdmins first_name:string last_name:string address:string phone:string
+rails db:migrate
+
+
+#facebook login
+rails g migration AddOmniauthToAdmins provider:string uid:string
+
+Heroku deploy 
+- https://devcenter.heroku.com/articles/getting-started-with-rails5
+sudo apt-get install postgresql-9.3
+sudo apt-get install libpq-dev
+sudo find / -name "pg_config"
+gem install pg -- --with-pg-config=/usr/bin/pg_config
+
+
+
+
+install rvm 
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -sSL https://get.rvm.io | bash -s stable
+
+
+#########How to run current master with postgre.#######
+
+step - 1: bundle install
+- this will fail.
+step -2 : sudo apt-get install postgresql-9.3
+step -3 : sudo apt-get install libpq-dev
+step -4 : sudo find / -name "pg_config"
+step -5 : gem install pg -- --with-pg-config=/usr/bin/pg_config
+
+step -6 : bundle install
+
+step -7 :sudo -u postgres createuser vagrant -s
+
+Now go to project directory. 
+- rails db:create
+- rails db:migrate db:seed
+- rails s -b 0.0.0.0
+
+# if this doesnot work then 
+step -8 : $ sudo -u postgres -i
+
+step -9 : postgres@host:~$ psql
+step -10 : In there: postgres=# ALTER USER vagrant CREATEDB;
+
+
+Again, go to project directory
+- rake db:create
+- rake db:migrate db:seed
+- rails s -b 0.0.0.0
+
+### scaffold post
+rails generate scaffold Post content:text image:string
+rails generate migration AddUserRefToPosts user:references
+rails generate migration AddTravelEventRefToPosts travel_event:references
+
+
+
+rails g migration AddImageToTravelEvents image:string
+
+
+
+## heroku reset database
+heroku login
+heroku pg:reset DATABASE --app travel-with-buddy
+
+
+
+timeline viewer
+http://bootsnipp.com/snippets/W7X6X
+
+for logo design 
+https://www.canva.com/create/logos/

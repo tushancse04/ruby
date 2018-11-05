@@ -1,0 +1,41 @@
+<%= form_for [:travel_event, travel_place] do |f| %>
+  <% if travel_place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(travel_place.errors.count, "error") %> prohibited this travel_place from being saved:</h2>
+
+      <ul>
+      <% travel_place.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :startTime %>
+    <%= f.datetime_select :startTime %>
+  </div>
+
+  <div class="field">
+    <%= f.label :endTime %>
+    <%= f.datetime_select :endTime %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  
+  <%= f.hidden_field :travel_event_id, value: @travel_event.id %>
+  
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,141 @@
+<%= form_for(travel_event) do |f| %>
+    <% if travel_event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(travel_event.errors.count, "error") %> prohibited this travel_event from being saved:</h2>
+
+          <ul>
+            <% travel_event.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+    <div class="row row-padding">
+      <div class="col-md-3">
+        <%= f.label :name %>
+      </div>
+
+      <div class="col-md-9">
+        <%= f.text_field :name, class: "col-md-12"%>
+      </div>
+    </div>
+
+    <div class="row row-padding">
+      <div class=" col-md-3">
+        <%= f.label :description %>
+      </div>
+
+      <div class=" col-md-9">
+        <%= f.text_area :description, class: "col-md-12"%>
+      </div>
+
+    </div>
+
+    
+    <div class="row row-padding">
+      <div class=" col-md-3">
+        <%= f.label :image %>
+      </div>
+
+      <div class=" col-md-9">
+        <%= f.file_field :image %>
+      </div>
+    </div>
+
+    <div class="row row-padding">
+      <div class=" col-md-3">
+        <%= f.label :max_attendance %>
+      </div>
+
+      <div class=" col-md-9">
+        <%= f.number_field :max_attendance %>
+      </div>
+    </div>
+
+
+    <div class="row row-padding">
+      <div class=" col-md-3">
+        <%= f.label :price %>
+      </div>
+
+      <div class=" col-md-9">
+        <%= f.text_field :price %>
+      </div>
+    </div>
+
+    <div class="row row-padding">
+      <div class=" col-md-3">
+        <%= f.label :start %>
+      </div>
+
+      <div class=" col-md-9">
+        <%= f.datetime_select :start, :ampm => true, :minute_step => 15 %>
+      </div>
+    </div>
+
+    <div class="row row-padding">
+      <div class=" col-md-3">
+        <%= f.label :duration %>
+      </div>
+
+      <div class=" col-md-9">
+        <%= f.time_select :duration %>
+      </div>
+    </div>
+
+    <div class="row row-padding">
+      <div class=" col-md-3">
+        <%= f.label :destination %>
+      </div>
+
+      <div class=" col-md-9">
+        <%= f.collection_select :travel_destination_id, TravelDestination.all, :id, :address %>
+        <%= link_to "Add new", new_travel_destination_path, target: :_blank %>
+      </div>
+    </div>
+
+    <div class="row row-padding">
+      <div class=" col-md-12">
+        <h3>
+          <%= f.label :places %>
+        </h3>
+      </div>
+    </div>
+
+    <div class="row row-padding">
+      <div class=" col-md-12">
+        <%= render(
+                  partial: 'travel_places/list',
+                  locals: {travel_places: travel_event.travel_places}
+              ) %>
+      </div>
+    </div>    
+
+    <!-- <div class="row">
+      <div class=" col-md-12">
+        <% travel_event.travel_places.each do |travel_place|%>
+          <div class="row">
+            <%= travel_place.address%>|<%= travel_place.startTime%>|<%= travel_place.endTime%>|
+            <%= travel_place.description %>
+          </div>
+        <% end %>
+      </div>
+    </div> -->
+
+    <%= f.hidden_field :user_id, value: current_admin.user.id%>
+
+
+
+    </br>
+
+    <div class="actions">
+      <%= f.submit(class: "btn btn-sm btn-primary") %>
+    </div>
+
+
+
+
+<% end %>

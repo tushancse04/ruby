@@ -1,0 +1,99 @@
+<% @reviews_paginated.each do |review| %>
+    <% @reviewer = User.where(id: review.user_id).take %>
+
+    <% if @reviewer != nil %>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <div class="card">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h4 class="card-title">
+                                    <span>
+                                      <%= image_tag(@reviewer.image_url(:thumb).to_s) %>
+                                      <% @reviewer_full_name = @reviewer.first_name + " " + @reviewer.last_name %>
+                                      <%= link_to @reviewer_full_name, user_path(review.user_id) %>
+                                    </span>
+                          </h4>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class='star-rating' data-score=<%= review.rating %>></div>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                    <div class="col-md-4 pull-right">
+                      <div class="row pull-right">
+                        <div class="col-md-12">
+                          <%= link_to 'Show', review_path(review), class: "btn btn-sm btn-default" %>
+                          <% if review.user_id == current_admin.user.id %>
+
+                              <%= link_to edit_review_path(review), class: "btn btn-sm btn-default" do%>
+                                  <i class="glyphicon glyphicon-pencil"></i>
+                              <% end %>
+                              <%= link_to review_path(review), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-sm btn-danger" do%>
+                                  <i class="glyphicon glyphicon-trash"></i>
+                              <% end %>
+
+                          <% end %>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card-block">
+                  <p class="card-text">
+                  <div style="word-wrap: break-word;min-width: 200px;max-width: 200px;">
+                    <%= truncate review.description, length: 160 %>
+                  </div>
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+    <% end %>
+
+<% end %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="text-center">
+      <div class="flickr_pagination">
+        <div class="page_info">
+          <div>
+            (
+            <%= page_entries_info @reviews_paginated %>
+            )
+          </div>
+        </div>
+        <%= will_paginate @reviews_paginated, param_name: 'reviews_page', container: 'review-section'%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	$('.star-rating').raty({
+		path: '/assets/',
+		readOnly: true,
+		number: 5,
+		score: function () {
+			return $(this).attr('data-score');
+		}
+	});
+</script>

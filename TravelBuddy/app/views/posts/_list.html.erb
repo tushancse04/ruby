@@ -1,0 +1,20 @@
+<div id="posts">
+  <%= render @posts %>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="text-center">
+      <div class="flickr_pagination">
+        <div class="page_info">
+          <div>
+            (
+            <%= page_entries_info posts %>
+            )
+          </div>
+        </div>
+        <%= will_paginate posts, param_name: 'posts_page', container: 'post-section'%>
+      </div>
+    </div>
+  </div>
+</div>

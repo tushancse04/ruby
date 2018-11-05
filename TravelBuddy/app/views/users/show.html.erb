@@ -1,0 +1,67 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<%= @user.first_name%> <%= @user.last_name%>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3 col-lg-3 " align="center">
+							<%= image_tag(@user.image_url(:passport).to_s) %>
+						</div>
+
+						<div class=" col-md-9 col-lg-9 "> 
+							<table class="table table-user-information">
+								<tbody>
+									<tr>
+										<td>First Name:</td>
+										<td><%= @user.first_name %></td>
+									</tr>
+
+									<tr>
+										<td>Last Name:</td>
+										<td><%= @user.last_name %></td>
+									</tr>
+
+									<tr>
+										<td>Email:</td>
+										<td><%= @user.email %></td>
+									</tr>
+									
+									<tr>
+										<td>Adress:</td>
+										<td><%= @user.address %></td>
+									</tr>
+
+									<tr>
+										<td>Phone:</td>
+										<td><%= @user.phone %></td>
+									</tr>
+
+									<tr>
+										<td colspan="2">
+											<div class="row text-center">
+												<% if @user.admin_id == current_admin.id %> 
+													<%= link_to 'Edit User', edit_user_path(@user),  class: 'btn btn-sm btn-primary'%>
+													<%= link_to 'Delete User', registration_path(current_admin), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-sm btn-danger'%>
+												<% end %>
+												<%= link_to 'Back', travel_events_path,  class: 'btn btn-sm btn-warning'%>
+											</div>
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

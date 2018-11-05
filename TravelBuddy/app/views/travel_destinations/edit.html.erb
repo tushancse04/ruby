@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Editing Travel Destination</h3></br>
+				</div>
+				<div class="panel-body">
+					<%= render 'form', travel_destination: @travel_destination, picture: @picture %>
+					<%= link_to 'Show', @travel_destination , class: "btn btn-sm btn-primary" %>
+					<%= link_to 'Back', travel_destinations_path , class: "btn btn-sm btn-primary" %>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

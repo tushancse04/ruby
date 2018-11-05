@@ -1,0 +1,98 @@
+<div class="container">
+  <% if @upcoming_travel_events_with_image.size > 0 %>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="mycarousel" class="carousel slide carousel-custom-margin" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <% @upcoming_travel_events_with_image.each_with_index do |event, i| %>
+                  <li data-target="#mycarousel" data-slide-to=<%= i%> class=<%= 'active' if i == 0 %>></li>
+              <% end %>
+
+            </ol>
+
+            <div class="carousel-inner">
+              <% @upcoming_travel_events_with_image.each_with_index do |event, i| %>
+                  <div class="item <%= 'active' if i == 0%>">
+                    <div class="item peopleCarouselImg">
+                      <%= link_to image_tag(event.image_url.to_s, size: '500x100', class: 'fill img-responsive peopleCarouselImg'), travel_event_path(event) %>
+                    </div>
+
+                    <div class="carousel-caption">
+                      <h2><%= event.name %></h2>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#mycarousel" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#mycarousel" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="row">
+    <div class="row mt-5 mb-5">
+
+      <div class="col-md-12 search-bar">
+        <%= form_for_filterrific @filterrific do |f| %>
+		
+		    <div class="col-md-9" class="form-group has-feedback">
+				<%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+				<div class="input-group">
+					<%= f.text_field(
+						:search_query,
+						placeholder: "Search for an upcoming event",
+						class: 'filterrific-periodically-observed form-control'
+						) %>
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-search"></i>
+					</span>
+				</div>
+            </div>
+			
+            <div class="col-md-1">
+             <%= render_filterrific_spinner %>
+           </div>
+           <% end %>
+           <div class="col-md-2 pull-right">
+             <div class="pull-right">
+
+              <%= link_to new_travel_event_path, class: "btn btn-primary" do %>
+              <i class="glyphicon glyphicon-plus"></i> New Travel Event
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5 mb-5 search-bar">
+        <div class="col-md-12">
+          <%= render(
+            partial: 'travel_events/list',
+            locals: { travel_events: @travel_events }
+            ) %>    
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+</div>
+
+<script>
+	$(function(){
+		$('#mycarousel').carousel();
+	});
+</script>

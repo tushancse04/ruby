@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<%= link_to home_path, class: "navbar-brand" do %>
+				<%= image_tag "logo.png", height: '60'%>
+			<% end %>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<ul class="nav navbar-nav">
+			<!-- Will add Javascript to make buttons active later, and add div anchors -->
+			<li class="<%= 'active' if current_page?(home_path) %>" id="events" role="presentation">
+				<%= link_to 'Events', home_path %>
+			</li>
+			<li class="<%= 'active' if current_page?(past_events_path) %>" id="past_events" role="presentation">
+				<%= link_to 'Past Events', past_events_path%>
+			</li>
+			<li class="<%= 'active' if current_page?(invitations_path) %>" id="invitations" role="presentation">
+				<%= link_to 'Invitations', invitations_path %>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<% if admin_signed_in? %>
+					<li><%= link_to 'Logout', destroy_admin_session_path, method: :delete%></li>
+					<li>
+						<%= link_to user_path(current_admin.user.id), style: 'color: #00f !important' do%>
+
+							<%= current_admin.email %>
+						<%end%>
+							
+					</li>
+				<% else%>
+					<li><%= link_to 'Sign In', new_admin_session_path %></li>
+					<li><%= link_to 'Sign Up', new_admin_registration_path %></li>
+				<% end %>
+			</li>
+		</ul>
+	</div><!-- /.container-fluid -->
+</nav>

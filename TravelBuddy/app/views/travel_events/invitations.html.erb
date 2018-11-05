@@ -1,0 +1,46 @@
+<div class="container">
+
+
+  <% @invitations.each do |invitation| %>
+      <% @user = User.find(invitation.from) %>
+      <% @event = TravelEvent.all.where(id:invitation.travel_event_id).first() %>
+      <div class="row">
+        <div class="card card-inverse invitation-background-gradient">
+          <div class="card-block">
+            <h3 class="card-title text-center">
+              <%= link_to @event.name, travel_event_path(:id => invitation.travel_event_id) %>
+            </h3>
+            <h5 class="text-center text-muted">
+              <span>
+                <i class="glyphicon glyphicon-envelope">
+                </i>
+                Invited By: <%= link_to @user.first_name + " " + @user.last_name, user_path(@user.id) %>
+              </span>
+            </h5>
+
+            <h5 class="text-center text-muted">
+              <span>
+                <i class="glyphicon glyphicon-list-alt">
+                </i>
+                Message: <%= invitation.description %>
+              </span>
+            </h5>
+
+            <h5 class="text-center">
+              <%= link_to join_path(:id => invitation.travel_event_id), class: 'btn btn-sm btn-primary' do%>
+                  <i class="glyphicon glyphicon glyphicon-ok-sign"></i>
+                  Join
+              <% end %>
+            </h5>
+
+
+            <p class="card-text">
+              <%= @event.description %>
+            </p>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+</div>
+

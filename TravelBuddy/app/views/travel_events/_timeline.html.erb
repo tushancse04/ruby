@@ -1,0 +1,37 @@
+<div class='container-fluid'> 
+  <ul class='htimeline'>
+    <% travel_places.each do |travel_place|%>
+      <li data-date=<%= travel_place.startTime%> class='step col-sm-3 orange'>
+        <div class="row text-center">
+          <%= travel_place.address%>
+        </div>
+        <div class="custom-table-row text-center">
+          <%= travel_place.startTime.strftime("%a %I:%M:%S %P")%>
+        </div>
+      </li>
+
+      <li data-date=<%= travel_place.endTime%> class='step col-sm-3 orange'>
+        <div class="row text-center">
+          <%= travel_place.address%>
+        </div>
+        <div class="custom-table-row text-center">
+          <%= travel_place.endTime.strftime("%a %I:%M:%S %P")%>
+        </div>
+      </li>  
+    <% end %>
+    <!-- <li data-date='03/10/2016' class='step col-sm-1 orange'><div>Inserted</div></li>
+    <li data-date='08/10/2016' class='step col-sm-2 green'><div>Published</div></li>
+    <li data-date='20/10/2016' class='step col-sm-1 red'><div>Deadline</div></li>
+    <li data-date='3/11/2016' class='step col-sm-1 blue'><div>Administrative meeting</div></li>
+    <li data-date='9/11/2016' class='step col-sm-3 blue'><div>Technical meeting</div></li>
+    <li data-date='15/1/2017' class='step col-sm-1 blue'><div>Economical meeting</div></li>
+    <li data-date='20/1/2017' class='step col-sm-1 green'><div>Decision meeting</div></li>
+    <li data-date='25/1/2017' class='step col-sm-1 green'><div>Award</div></li>
+    <li data-date='5/2/2017' class='step col-sm-1 green'><div>Contract sign</div></li>
+    <li data-date='9/11/2016' class='step col-sm-3 blue'><div>Technical meeting</div></li>
+    <li data-date='15/1/2017' class='step col-sm-1 blue'><div>Economical meeting</div></li>
+    <li data-date='20/1/2017' class='step col-sm-1 green'><div>Decision meeting</div></li>
+    <li data-date='25/1/2017' class='step col-sm-1 green'><div>Award</div></li>
+    <li data-date='5/2/2017' class='step col-sm-1 green'><div>Contract sign</div></li> -->
+  </ul>
+</div>

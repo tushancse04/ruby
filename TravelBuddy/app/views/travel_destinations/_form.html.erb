@@ -1,0 +1,72 @@
+<%= form_for(travel_destination) do |f| %>
+<% if travel_destination.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(travel_destination.errors.count, "error") %> prohibited this travel_destination from being saved:</h2>
+
+  <ul>
+    <% travel_destination.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
+<div class="row">
+  <div class=" col-md-12">
+   <%= f.label :address %>
+ </div>
+</div>
+
+<div class="row row-padding">
+  <div class=" col-md-12">
+    <%= f.text_field :address %> 
+  </div>
+</div>
+
+<div class="row">
+  <div class=" col-md-12">
+   <%= f.label :city %>
+ </div>
+</div>
+
+<div class="row row-padding">
+  <div class=" col-md-12">
+    <%= f.text_field :city %> 
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class=" col-md-12">
+   <%= f.label :state %>
+ </div>
+</div>
+
+<div class="row row-padding">
+  <div class=" col-md-12">
+    <%= f.text_field :state %> 
+  </div>
+</div>
+
+
+  <div class="row">
+    <div class=" col-md-12">
+     <%= f.label "Add Image" %>
+   </div>
+  </div>
+
+  <div class="row row-padding">
+    <div class=" col-md-12">
+      <%= f.file_field :image %>
+    </div>
+  </div>
+
+<div class="row row-padding">
+    <div class=" col-md-12">
+     <%= f.submit("Save",class: "btn btn-sm btn-primary")   %>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,487 @@
+// Place all the styles related to the TravelEvents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.row-padding
+	padding-top: 5px
+	padding-bottom: 5px
+
+.div_content
+	width: 610px
+	margin-left: auto
+	margin-right: auto
+
+.div_content label
+	width: 200px
+
+.div_content input[type='text']
+	width: 400px
+
+.div_content input[type='number']
+	width: 400px
+
+.div_content h3
+	color: green
+	text-align: center
+
+.search-bar
+	box-shadow: 0 1px 7px 0 #2c5252
+	padding-top: 15px
+	padding-bottom: 15px
+
+.card
+	margin-top: 15px
+	position: relative
+	display: -webkit-box
+	display: -webkit-flex
+	display: -ms-flexbox
+	display: flex
+	-webkit-box-orient: vertical
+	-webkit-box-direction: normal
+	-webkit-flex-direction: column
+	-ms-flex-direction: column
+	flex-direction: column
+	background-color: #fff
+	border: 1px solid rgba(0, 0, 0, .125)
+	border-radius: .25rem
+
+.card-header
+	padding: .75rem 1.25rem
+	margin-bottom: 0
+	background-color: #f7f7f9
+
+.custom-card-header
+	padding-left: 14px
+	padding-right: 14px
+	padding-bottom: 14px
+	margin-bottom: 0
+	background-color: #f7f7f9
+
+.card-block
+	-webkit-box-flex: 1
+	-webkit-flex: 1 1 auto
+	-ms-flex: 1 1 auto
+	flex: 1 1 auto
+	padding: 1.25rem
+
+.text-muted
+	color: #636c72 !important
+
+.card-footer
+	padding: .75rem 1.25rem
+	background-color: #f7f7f9
+	border-top: 1px solid rgba(0, 0, 0, .125)
+	
+.card-img-overlay 
+	position: absolute
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	padding: 1.25rem
+
+.card-inverse
+	color: rgba(255,255,255,.65)
+
+.ml5
+	margin-left: 5px
+
+.inner
+	padding: 1em
+	background-color: white
+	overflow: hidden
+	position: relative
+	-webkit-border-radius: 4px
+	-moz-border-radius: 4px
+	border-radius: 4px
+
+.rating
+	float: left
+	width: 45%
+	margin-right: 5%
+	text-align: center
+
+.rating-num
+	color: #333333
+	font-size: 72px
+	font-weight: 100
+	line-height: 1em
+
+.rating-stars
+	font-size: 20px
+	color: #E3E3E3
+	margin-bottom: .5em
+
+.rating-stars .active
+	color: #737373
+
+.rating-users
+	font-size: 14px
+
+.histo
+	float: left
+	width: 50%
+	font-size: 13px
+
+.histo-star
+	float: left
+	padding: 3px
+
+.histo-rate
+	width: 100%
+	display: block
+	clear: both
+
+.bar-block
+	margin-left: 5px
+	color: black
+	display: block
+	float: left
+	width: 75%
+	position: relative
+
+.bar
+	padding: 4px
+	display: block
+
+#bar-five
+	width: 0
+	background-color: #9FC05A
+
+#bar-four
+	width: 0
+	background-color: #ADD633
+
+#bar-three
+	width: 0
+	background-color: #FFD834
+
+#bar-two
+	width: 0
+	background-color: #FFB234
+
+#bar-one
+	width: 0
+	background-color: #FF8B5A
+
+.digg_pagination
+	background: white
+	cursor: default
+	a, span, em
+		padding: 0.2em 0.5em
+		display: block
+		float: left
+		margin-right: 1px
+	.disabled
+		color: #999999
+		border: 1px solid #dddddd
+	.current
+		font-style: normal
+		font-weight: bold
+		background: #2e6ab1
+		color: white
+		border: 1px solid #2e6ab1
+	a
+		text-decoration: none
+		color: #105cb6
+		border: 1px solid #9aafe5
+		&:hover, &:focus
+			color: #000033
+			border-color: #000033
+	.page_info
+		background: #2e6ab1
+		color: white
+		padding: 0.4em 0.6em
+		width: 22em
+		margin-bottom: 0.3em
+		text-align: center
+		b
+			color: #000033
+			background: #2e6ab1 + 60
+			padding: 0.1em 0.25em
+	/* self-clearing method:
+	&:after
+		content: "."
+		display: block
+		height: 0
+		clear: both
+		visibility: hidden
+	* html &
+		height: 1%
+	*:first-child + html &
+		overflow: hidden
+
+.apple_pagination
+	background: #f1f1f1
+	border: 1px solid #e5e5e5
+	text-align: center
+	padding: 1em
+	cursor: default
+	a, span
+		padding: 0.2em 0.3em
+	.disabled
+		color: #aaaaaa
+	.current
+		font-style: normal
+		font-weight: bold
+		background-color: darken(#f1f1f1, 20)
+		display: inline-block
+		width: 1.4em
+		height: 1.4em
+		line-height: 1.5
+		-moz-border-radius: 1em
+		-webkit-border-radius: 1em
+		border-radius: 1em
+		text-shadow: rgba(white, .8) 1px 1px 1px
+	a
+		text-decoration: none
+		color: black
+		&:hover, &:focus
+			text-decoration: underline
+
+.flickr_pagination
+	text-align: center
+	padding: 0.3em
+	cursor: default
+	a, span, em
+		padding: 0.2em 0.5em
+	.disabled
+		color: #aaaaaa
+	.current
+		font-style: normal
+		font-weight: bold
+		color: #ff0084
+	a
+		border: 1px solid #dddddd
+		color: #0063dc
+		text-decoration: none
+		&:hover, &:focus
+			border-color: #003366
+			background: #0063dc
+			color: white
+	.page_info
+		color: #aaaaaa
+		padding-top: 0.8em
+	.previous_page, .next_page
+		border-width: 2px
+	.previous_page
+		margin-right: 1em
+	.next_page
+		margin-left: 1em
+
+ul.nav.nav-tabs.nav-justified.custom-nav-tab
+	margin: 0
+
+.nav-tabs.nav-justified.custom-nav-tab > li > a
+	border: 0 !important
+	border-radius: 0 !important
+
+.nav-tabs.nav-justified.custom-nav-tab > .active > a
+	border-bottom: 4px solid #4abef7 !important
+
+.pt10
+	padding-top: 10px
+
+.custom-nav-tab
+	padding-top: 0px
+	padding-bottom: 0px
+	border-top: #ddd solid 1px
+	border-bottom: #ddd solid 1px !important
+
+.text-subtitle
+	color: grey
+	font-size: smaller
+
+.mt8
+	margin-top: 8px
+
+.mb8
+	margin-bottom: 8px
+
+.travel-event-list-image
+	max-width: 100%
+	height: 400px
+	max-height: 400px
+
+.peopleCarouselImg img
+	width: 100%
+	height: 350px
+
+.carousel-custom-margin
+	margin-left: -30px
+	margin-right: -30px
+
+.custom-card-image
+	margin-top: -15.5px
+	margin-left: -28px
+	margin-bottom: -8px
+
+.invitation-background-gradient
+	background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px, linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px, linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px, linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px, linear-gradient(90deg, #1b1b1b 10px, transparent 10px), linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424)
+	background-color: #131313
+	background-size: 20px 20px
+
+time.icon
+	font-size: 1em
+	/* change icon size
+	display: block
+	position: relative
+	width: 9em
+	height: 7em
+	background-color: #fff
+	margin: 8px 8px 8px 8px
+	border-radius: 0.6em
+	box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd
+	overflow: hidden
+	-webkit-backface-visibility: hidden
+	-webkit-transform: rotate(0deg) skewY(0deg)
+	-webkit-transform-origin: 50% 10%
+	transform-origin: 50% 10%
+	*
+		display: block
+		width: 100%
+		font-size: 1em
+		font-weight: bold
+		font-style: normal
+		text-align: center
+	strong
+		position: absolute
+		top: 0
+		padding: 0.4em 0
+		color: #fff
+		background-color: #fd9f1b
+		border-bottom: 1px dashed #f37302
+		box-shadow: 0 2px 0 #fd9f1b
+	em
+		position: absolute
+		bottom: 0.3em
+		color: #fd9f1b
+	span
+		width: 100%
+		font-size: 2.8em
+		letter-spacing: -0.05em
+		padding-top: 0.8em
+		color: #2f2f2f
+	&:hover, &:focus
+		-webkit-animation: swing 0.6s ease-out
+		animation: swing 0.6s ease-out
+
+@-webkit-keyframes swing
+	0%
+		-webkit-transform: rotate(0deg) skewY(0deg)
+
+	20%
+		-webkit-transform: rotate(12deg) skewY(4deg)
+
+	60%
+		-webkit-transform: rotate(-9deg) skewY(-3deg)
+
+	80%
+		-webkit-transform: rotate(6deg) skewY(-2deg)
+
+	100%
+		-webkit-transform: rotate(0deg) skewY(0deg)
+
+
+@keyframes swing
+	0%
+		transform: rotate(0deg) skewY(0deg)
+
+	20%
+		transform: rotate(12deg) skewY(4deg)
+
+	60%
+		transform: rotate(-9deg) skewY(-3deg)
+
+	80%
+		transform: rotate(6deg) skewY(-2deg)
+
+	100%
+		transform: rotate(0deg) skewY(0deg)
+
+.pl8
+	padding-left: 8px
+
+.pt8
+	padding-top: 8px
+
+.pl16
+	padding-left: 16px
+
+.card-img-top
+	border-top-right-radius: calc(.25rem - 1px)
+	border-top-left-radius: calc(.25rem - 1px)
+	width: 100%
+
+
+// timeline
+.htimeline
+	list-style: none
+	padding: 0
+	margin: 10px 0 0
+	.step
+		float: left
+		border-bottom-style: solid
+		border-bottom-width: 5px
+		position: relative
+		margin-bottom: 10px
+		text-align: left
+		padding: 0px 0 5px 0px
+		background-color: #ddd
+		color: #333
+		height: 60px
+		vertical-align: middle
+		border-right: solid 1px #bbb
+		transition: all 0.5s ease
+		&:nth-child(odd)
+			background-color: #eee
+		&:first-child
+			border-left: solid 1px #bbb
+		&:hover
+			background-color: #ccc
+			border-bottom-width: 6px
+		div
+			margin: 0 5px
+			font-size: 14px
+			vertical-align: top
+			padding: 0
+		&.green
+			border-bottom-color: #348F50
+		&.orange
+			border-bottom-color: #F09819
+		&.red
+			border-bottom-color: #C04848
+		&.blue
+			border-bottom-color: #49a09d
+		&::before
+			width: 15px
+			height: 15px
+			border-radius: 50px
+			content: ' '
+			background-color: white
+			position: absolute
+			bottom: -10px
+			left: 0px
+			border-style: solid
+			border-width: 3px
+			transition: all 0.5s ease
+		&:hover::before
+			width: 18px
+			height: 18px
+			bottom: -12px
+		&.green::before
+			border-color: #348F50
+		&.orange::before
+			border-color: #F09819
+		&.red::before
+			border-color: #C04848
+		&.blue::before
+			border-color: #49a09d
+		&::after
+			content: attr(data-date)
+			position: absolute
+			bottom: 0px
+			left: 17px
+			font-size: 11px
+			font-style: italic
+			color: #888

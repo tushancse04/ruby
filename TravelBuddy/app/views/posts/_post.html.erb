@@ -1,0 +1,74 @@
+<% @poster = User.where(id: post.user_id).take %>
+
+<% if @poster != nil %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4 class="card-title">
+                                    <span>
+                                      <%= image_tag(@poster.image_url(:thumb).to_s) %>
+                                      <% @poster_full_name = @poster.first_name + " " + @poster.last_name %>
+                                      <%= link_to @poster_full_name, user_path(post.user_id) %>
+                                    </span>
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="text-subtitle">
+                        <%= post.created_at %>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div class="col-md-4 pull-right">
+                  <div class="row pull-right">
+                    <div class="col-md-12">
+                      <%= link_to 'Show', post_path(post), class: "btn btn-sm btn-default" %>
+                      <% if post.user_id == current_admin.user.id %>
+
+                          <%= link_to edit_post_path(post), class: "btn btn-sm btn-default" do %>
+                              <i class="glyphicon glyphicon-pencil"></i>
+                          <% end %>
+                          <%= link_to post_path(post), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-sm btn-danger" do %>
+                              <i class="glyphicon glyphicon-trash"></i>
+                          <% end %>
+
+                      <% end %>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card-block">
+              <p class="card-text">
+              <div style="word-wrap: break-word;min-width: 200px;max-width: 200px;">
+                <%= truncate post.content, length: 160 %>
+              </div>
+              </p>
+
+              <div class="text-center">
+                <%= image_tag(post.image_url(:normal).to_s) %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+<% end %>

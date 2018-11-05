@@ -1,0 +1,217 @@
+<ul class="nav nav-tabs nav-justified custom-nav-tab">
+  <li role="presentation" class="active" id="review-tab">
+    <a href="#review-section" data-toggle="tab">Reviews</a>
+  </li>
+  <li role="presentation" id="post-tab">
+    <a href="#post-section" data-toggle="tab">Posts</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div id="review-section" class="tab-pane fade in active">
+    <div class="row">
+      <!--<div class="col-lg-10">-->
+      <!--<h3>Reviews: </h3>-->
+      <!--</div>-->
+      <div class="col-md-12">
+        <% if @has_review == false %>
+            <div class="row-padding">
+
+              <div class="text-center">
+                <%= link_to new_review_path(travel_event_id: @travel_event.id), class: "btn btn-sm btn-default" do %>
+                    <i class="glyphicon glyphicon-plus"></i>
+                    Write a Review
+                <% end %>
+              </div>
+
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <% if @reviews.size > 0 %>
+
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+            <div class="container-fluid">
+              <div class="inner">
+                <div class="rating">
+                  <span class="rating-num"><%= @average_rating.round(2) %></span>
+                  <div class="rating-stars">
+                    <div class="star-rating-avg" data-score=<%= @average_rating.round(2) %>></div>
+                  </div>
+                  <div class="rating-users">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <%= @reviews.count(:all) %>
+                    total
+                  </div>
+                </div>
+
+                <div class="histo">
+                  <div class="five histo-rate">
+                <span class="histo-star">
+                  <i class="active glyphicon glyphicon-star"></i> 5
+                </span>
+                    <span class="bar-block">
+                  <span id="bar-five" class="bar" data-score=<%= @reviews.where('rating > 4.5').count %>>
+                    <%= @five_star_count %>
+                  </span>
+                </span>
+                  </div>
+
+                  <div class="four histo-rate">
+                <span class="histo-star">
+                  <i class="active glyphicon glyphicon-star"></i> 4
+                </span>
+                    <span class="bar-block">
+                  <span id="bar-four" class="bar">
+                    <%= @four_star_count %>
+                  </span>
+                </span>
+                  </div>
+
+                  <div class="three histo-rate">
+                <span class="histo-star">
+                  <i class="active glyphicon glyphicon-star"></i> 3
+                </span>
+
+                    <span class="bar-block">
+                  <span id="bar-three" class="bar">
+                    <%= @three_star_count %>
+                  </span>
+                </span>
+                  </div>
+
+                  <div class="two histo-rate">
+                <span class="histo-star">
+                  <i class="active glyphicon glyphicon-star"></i> 2
+                </span>
+                    <span class="bar-block">
+                  <span id="bar-two" class="bar">
+                    <%= @two_star_count %>
+                  </span>
+                </span>
+                  </div>
+
+                  <div class="one histo-rate">
+                  <span class="histo-star">
+                    <i class="active glyphicon glyphicon-star"></i> 1
+                  </span>
+                    <span class="bar-block">
+                    <span id="bar-one" class="bar">
+                      <%= @one_star_count %>
+                    </span>
+                  </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <%= render(
+                partial: 'reviews/list',
+                locals: {reviews: @reviews_paginated}
+            ) %>
+
+
+    <% end %>
+
+  </div>
+  <div id="post-section" class="tab-pane fade">
+    <%= render(
+            partial: 'posts/form',
+            locals: {post: @post}
+        ) %>
+
+
+
+    <%= render(
+            partial: 'posts/list',
+            locals: {posts: @posts}
+        ) %>
+
+
+  </div>
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('.bar span').hide();
+
+		default_width = 10
+
+		if (typeof $('#bar-five')[0] != 'undefined' &&
+			typeof $('#bar-four')[0] != 'undefined' &&
+			typeof $('#bar-three')[0] != 'undefined' &&
+			typeof $('#bar-two')[0] != 'undefined' &&
+			typeof $('#bar-one')[0] != 'undefined') {
+
+			fiveValue = +($('#bar-five')[0].innerText)
+			fourValue = +($('#bar-four')[0].innerText)
+			threeValue = +($('#bar-three')[0].innerText)
+			twoValue = +($('#bar-two')[0].innerText)
+			oneValue = +($('#bar-one')[0].innerText)
+			sum = fiveValue + fourValue + threeValue + twoValue + oneValue
+
+			fivePerc = (fiveValue * 100 / sum)
+			fourPerc = (fourValue * 100 / sum)
+			threePerc = (threeValue * 100 / sum)
+			twoPerc = (twoValue * 100 / sum)
+			onePerc = (oneValue * 100 / sum)
+
+			fivePerc = (fivePerc < default_width) ? default_width : fivePerc
+			fourPerc = (fourPerc < default_width) ? default_width : fourPerc
+			threePerc = (threePerc < default_width) ? default_width : threePerc
+			twoPerc = (twoPerc < default_width) ? default_width : twoPerc
+			onePerc = (onePerc < default_width) ? default_width : onePerc
+
+
+			$('#bar-five').animate({
+				width: fivePerc + "%"
+			}, 1000);
+			$('#bar-four').animate({
+				width: fourPerc + "%"
+			}, 1000);
+			$('#bar-three').animate({
+				width: threePerc + "%"
+			}, 1000);
+			$('#bar-two').animate({
+				width: twoPerc + "%"
+			}, 1000);
+			$('#bar-one').animate({
+				width: onePerc + "%"
+			}, 1000);
+
+			setTimeout(function () {
+				$('.bar span').fadeIn('slow');
+			}, 1000);
+
+		}
+
+
+		$("#review-tab a").click(function (e) {
+			e.preventDefault();
+			$(this).tab('show');
+		});
+
+		$("#post-tab a").click(function (e) {
+			e.preventDefault();
+			$(this).tab('show');
+		});
+	});
+
+	$('.star-rating-avg').raty({
+		path: '/assets/',
+		readOnly: true,
+		number: 5,
+		score: function () {
+			return $(this).attr('data-score');
+		}
+	});
+</script>

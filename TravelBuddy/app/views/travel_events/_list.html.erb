@@ -1,0 +1,122 @@
+<div id="filterrific_results">
+  <div class="alert alert-info" role="alert">
+    <%= page_entries_info travel_events %>
+  </div>
+
+
+  <% @travel_events.each do |travel_event| %>
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="custom-card-image  col-md-6">
+              <div class="mt8 mb8">
+                <% if travel_event.image.file.nil? %>
+                    <%= link_to image_tag("card_placeholder.png", class: "travel-event-list-image col-md-12"), travel_event_path(travel_event) %>
+                <% else %>
+                    <%= link_to image_tag(travel_event.image_url.to_s, size: '500x100', class: "travel-event-list-image col-md-12"), travel_event_path(travel_event) %>
+                <% end %>
+
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="row">
+                <div class="text-center mt8 mb8">
+                  <h2 class="card-title"><%= link_to travel_event.name, travel_event_path(:id => travel_event.id) %></h2>
+                </div>
+              </div>
+
+              <div class="custom-table-row">
+                <div class="row text-center mt8 mb8">
+                  <span>
+                    <span class="badge">
+                      <i class="glyphicon glyphicon-map-marker"></i>
+                    </span>
+                    <%= travel_event.travel_destination.address %>
+                  </span>
+                </div>
+				
+				<div class="row text-center mt8 mb8">
+                  <span>
+                    <i class="glyphicon glyphicon-thumbs-up"></i>
+                    Destination Rating: <div class='star-rating' data-score=<%= travel_event.average_rating %>></div>
+                  </span>
+                </div>
+				
+                <div class="row text-center mt8 mb8">
+                  <span>
+                    <i class="glyphicon glyphicon-time"></i>
+                    Start at: <%= travel_event.start %>
+                  </span>
+                </div>
+
+                <div class="row text-center mt8 mb8">
+                  <span>
+                    <i class="glyphicon glyphicon-time"></i>
+                    Duration: <%= travel_event.duration.strftime("%H hr %M min %S sec") %>
+                  </span>
+                </div>
+
+                <div class="row text-center mt8 mb8">
+                  <span>
+                    <i class="glyphicon glyphicon-usd"></i>
+                    Cost: <%= travel_event.price %>
+                  </span>
+                </div>
+
+                <% if travel_event.attendees.count < travel_event.max_attendance %>
+
+                  <div class="row text-center mt8 mb8">
+                    <%= link_to new_invitations_path(:id => travel_event.id), class: 'btn btn-md btn-primary' do%>
+                      <i class="glyphicon glyphicon-envelope"></i>
+                        Invite
+                    <% end %>
+                    <% if travel_event.attendees.where(user_id: @user.id).count == 0 and travel_event.attendees.count < travel_event.max_attendance and travel_event.user_id != current_admin.user.id %>
+                      <%=link_to join_path(:id => travel_event.id) , class: 'btn btn-md btn-success' do%>
+                        <i class="glyphicon glyphicon-ok"></i>
+                        Join
+                      <% end %>
+                    <% end %>
+                  </div>
+
+                <% end %>
+
+              </div>
+
+              <div class="custom-table-row text-center mt8 mb8">
+                <div >
+                  <%= travel_event.description %>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+        <!--<div class="card-block">-->
+          <!--<p class="card-text"><%= travel_event.description %></p>-->
+          <!--&lt;!&ndash; <a href="#" class="btn btn-primary">Go somewhere</a> &ndash;&gt;-->
+        <!--</div>-->
+      </div>
+  <% end %>
+
+  <div class="row mt-5 mb-5">
+    <div class="col-md-6">
+      <%= will_paginate travel_events %>
+    </div>
+  </div>
+</div>
+
+<script>
+	$('.star-rating').raty({
+		path: '/assets/',
+		readOnly: true,
+		number: 5,
+		score: function () {
+			return $(this).attr('data-score');
+		}
+	});
+</script>
+

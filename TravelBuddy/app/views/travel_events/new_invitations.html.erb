@@ -1,0 +1,67 @@
+<%= form_tag create_invitations_path do %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= @event.name%>
+          </h3>
+        </div>
+
+        <div class="panel-body">
+          <div class="row">
+            <div class=" col-md-12">
+              Description: 
+            </div>
+          </div>
+
+          <div class="row row-padding">
+            <div class=" col-md-12">
+              <%= text_area_tag "description", nil, class: 'col-md-12'%>  
+            </div>
+          </div>
+
+          <div class="row custom-table-row">
+            <div class="col-md-12">
+              Users: 
+            </div>
+          </div>
+
+          <% @invitations.each do |invitation| %>
+          <%= fields_for 'invitation[]', invitation do |p| %>
+          <% @user = User.find(invitation.user_id) %>
+          <% @active_user = User.all.where(admin_id:current_admin.id).first() %>
+          <% if @user.id != @active_user.id %>
+          <div class="row custom-table-row">
+            <div class="col-md-2">
+              <%= check_box_tag "user_ids[]", invitation.user_id %>
+            </div>
+            <div class="col-md-10">
+              <%= link_to @user.first_name + " " + @user.last_name, user_path(@user.id) %>
+
+            </div>
+          </div>
+          <% end %>
+          <% end %>
+          <% end %>
+
+          <div class="row custom-table-row">
+            <div class="actions col-md-12">
+              <div class="actions">
+                <%= submit_tag 'Invite', class: 'btn btn-md btn-primary'%>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

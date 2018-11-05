@@ -1,0 +1,76 @@
+<% @poster = User.where(id: post.user_id).take %>
+
+<%= form_for post, remote: true, authenticity_token: true, html: {id: "post_form"} do |f| %>
+
+    <% if @poster != nil %>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <div class="card">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h4 class="card-title">
+                                    <span>
+                                      <i class="glyphicon glyphicon-pencil"></i> Write a post
+
+                                    </span>
+                          </h4>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card-block">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <%= f.text_area :content, class: "col-md-12", style: 'resize: none', placeholder: "Write Something..." %>
+
+                      </div>
+
+
+                    </div>
+
+                    <div class="row  pt10 pb10">
+                      <div class="col-md-4">
+                        <%= f.label :image %>
+                      </div>
+
+                      <div class="col-md-8">
+                        <%= f.file_field :image %>
+
+                      </div>
+
+
+                    </div>
+                    <%= f.hidden_field :travel_event_id %>
+                    <%= f.hidden_field :user_id %>
+
+                  </div>
+
+
+                </div>
+
+                <div class="card-footer">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <%= f.submit "Post", class: "btn btn-sm btn-primary" %>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+    <% end %>
+<% end %>

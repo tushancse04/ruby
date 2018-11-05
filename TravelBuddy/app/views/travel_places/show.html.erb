@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @travel_place.address %>
+</p>
+
+<p>
+  <strong>Starttime:</strong>
+  <%= @travel_place.startTime %>
+</p>
+
+<p>
+  <strong>Endtime:</strong>
+  <%= @travel_place.endTime %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @travel_place.description %>
+</p>
+
+<p>
+  <strong>Travel event:</strong>
+  <%= @travel_place.travel_event %>
+</p>
+
+<%= link_to 'Edit', edit_travel_event_travel_place_path(@travel_place) %> |
+<%= link_to 'Back', travel_event_travel_places_path %>
